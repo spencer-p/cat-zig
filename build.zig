@@ -2,7 +2,7 @@ const Builder = @import("std").build.Builder;
 
 pub fn build(b: *Builder) void {
     const mode = b.standardReleaseOptions();
-    const exe = b.addExecutable("cat-zig", "src/main.zig");
+    const exe = b.addExecutable("cat", "src/main.zig");
     exe.setBuildMode(mode);
     exe.install();
 
