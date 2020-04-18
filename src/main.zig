@@ -52,13 +52,13 @@ const Input = struct {
 
 fn cat(buf: []u8, fname: []const u8) void {
     var file = Input.init(fname) catch |err| {
-        warn("failed to open {} for reading: {}\n", fname, err);
+        warn("failed to open {} for reading: {}\n", .{ fname, err });
         return;
     };
     defer file.close();
 
     file.dump(buf) catch |err| {
-        warn("failed to write contents of {}: {}\n", fname, err);
+        warn("failed to write contents of {}: {}\n", .{ fname, err });
     };
 }
 
@@ -77,7 +77,7 @@ fn cat_args(allocator: *std.mem.Allocator, buf: []u8) u32 {
         cat(buf, arg);
     } else |err| {
         // TODO: How can this ever happen?
-        warn("failed to read arguments: {}\n", err);
+        warn("failed to read arguments: {}\n", .{err});
         return argc;
     }
 
@@ -87,7 +87,7 @@ fn cat_args(allocator: *std.mem.Allocator, buf: []u8) u32 {
 pub fn main() !void {
     // One-off allocator from:
     // https://ziglang.org/documentation/0.5.0/#Choosing-an-Allocator
-    var arena = std.heap.ArenaAllocator.init(std.heap.direct_allocator);
+    var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
     defer arena.deinit();
     const allocator = &arena.allocator;
 

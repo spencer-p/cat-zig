@@ -6,7 +6,7 @@ compete with C. A good litmus test for systems programming languages is how easy
 it is to write common Unix utilities, and `cat(1)` is arguably the simplest of
 these.
 
-For this exercise, I chose to target Zig 0.5.0 as a stable release. I am doing
+For this exercise, I chose to target Zig 0.6.0 as a stable release. I am doing
 things the Unix way and relying on the standard open/close, read/write syscalls
 instead of the standard library (see TODO for a idiomatic version). Finally, I'm
 aiming for feature parity with the PDP 11 version of cat, which as far as I know
